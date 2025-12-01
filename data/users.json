@@ -3,28 +3,28 @@
     "id": 1,
     "nombre": "Admin",
     "email": "admin@site.com",
-    "password": "$2b$10$qT1qdcOZYOUDMMEp0mDou.BEQMDH1Ot2.xGuhqXZplUFDsyC7N8l.",
+    "password": "$2b$10$7XB03BgT2.s.JlHL8AYwJePrbo0asGLxfhaMcUr.ymVzt7jUIyGeC",
     "role": "admin"
   },
   {
     "id": 123,
     "nombre": "Ana",
     "email": "ana@email.com",
-    "password": "$2b$10$qT1qdcOZYOUDMMEp0mDou.BEQMDH1Ot2.xGuhqXZplUFDsyC7N8l.",
+    "password": "$2b$10$eAz9eslJaHr9kB64ZS2KMeB7k1o2dbbqkyx6ydvXhKR3DvFyLld0q",
     "role": "user"
   },
   {
     "id": 200,
     "nombre": "Coach Mario",
     "email": "mario@coaches.com",
-    "password": "$2b$10$qT1qdcOZYOUDMMEp0mDou.BEQMDH1Ot2.xGuhqXZplUFDsyC7N8l.",
+    "password": "$2b$10$VVzq9pL//O7Op2OCOtDq.ulNEJr00AoSMvcMXeB6MPFnkF6qK5vAO",
     "role": "coach"
   },
   {
     "id": 300,
     "nombre": "Other Coach",
     "email": "other@coach.com",
-    "password": "$2b$10$qT1qdcOZYOUDMMEp0mDou.BEQMDH1Ot2.xGuhqXZplUFDsyC7N8l.",
+    "password": "$2b$10$nmHfylYEOy46AA3TfrcO1OuVgKpSvVZTuwOTiIM/4Rh5jS9NJ64s.",
     "role": "coach"
   }
 ]
