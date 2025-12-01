@@ -1,0 +1,23 @@
+[
+  {
+    "id": 123,
+    "nombre": "Ana",
+    "email": "ana@email.com",
+    "password": "$2b$10$EnSCT8/Q41kr0bbL/T/dP.l7zrEI/OJe/UX76yZqmg2b62Nfhdwk.",
+    "role": "user"
+  },
+  {
+    "id": 200,
+    "nombre": "Coach Mario",
+    "email": "mario@coaches.com",
+    "password": "$2b$10$eAqVRgD/xz78mdxuOE2VwOhQg7SplNIdf2HhUYeA0Id6.z437I9UO",
+    "role": "coach"
+  },
+  {
+    "id": 1,
+    "nombre": "Admin",
+    "email": "admin@site.com",
+    "password": "$2b$10$JxoJtaNlRFs9ifYex8O0NOwH4ArmIvkwHrVl5JXTkEyt439zBmhNW",
+    "role": "admin"
+  }
+]

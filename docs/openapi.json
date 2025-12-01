@@ -1,0 +1,107 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Fitness Marketplace API (demo)",
+    "version": "1.0.0",
+    "description": "API demo con endpoints para usuarios, planes y entrenamientos."
+  },
+  "servers": [
+    { "url": "http://localhost:3000" }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Healthcheck",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/usuarios/login": {
+      "post": {
+        "summary": "Login de usuario",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string" },
+                  "password": { "type": "string" }
+                },
+                "required": ["email","password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Token y usuario" },
+          "401": { "description": "Credenciales inválidas" }
+        }
+      }
+    },
+    "/api/planes": {
+      "get": {
+        "summary": "Listar planes aprobados",
+        "responses": { "200": { "description": "Lista de planes" } }
+      },
+      "post": {
+        "summary": "Crear plan (coach/admin)",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "titulo": { "type": "string" },
+                  "descripcion": { "type": "string" },
+                  "precio": { "type": "number" },
+                  "aprobado": { "type": "boolean" },
+                  "url_vista_previa": { "type": "string" }
+                },
+                "required": ["titulo","precio"]
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "Plan creado" }, "403": { "description": "No autorizado" } }
+      }
+    },
+    "/api/planes/{id}": {
+      "get": {
+        "summary": "Detalle de un plan",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": { "200": { "description": "Detalle del plan" }, "404": { "description": "No encontrado" } }
+      },
+      "put": {
+        "summary": "Editar plan (coach creador o admin)",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "requestBody": { "content": { "application/json": { "schema": { "type": "object" } } } },
+        "responses": { "200": { "description": "Plan actualizado" }, "403": { "description": "No autorizado" } }
+      }
+    },
+    "/api/usuarios/{id}/entrenamientos": {
+      "post": {
+        "summary": "Registrar entrenamiento completado",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "type": "object", "properties": { "fecha": { "type": "string", "format": "date" }, "id_plan": { "type": "integer" } }, "required": ["fecha","id_plan"] } } }
+        },
+        "responses": { "200": { "description": "Entrenamiento registrado" }, "403": { "description": "No autorizado" } }
+      }
+    }
+  }
+}

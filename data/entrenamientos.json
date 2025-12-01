@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "usuario_id": 123,
+    "fecha": "2024-05-21",
+    "id_plan": 45
+  },
+  {
+    "id": 2,
+    "usuario_id": 123,
+    "fecha": "2024-05-21",
+    "id_plan": 45
+  },
+  {
+    "id": 3,
+    "usuario_id": 123,
+    "fecha": "2024-06-01",
+    "id_plan": 45
+  },
+  {
+    "id": 4,
+    "usuario_id": 123,
+    "fecha": "2024-06-01",
+    "id_plan": 45
+  }
+]

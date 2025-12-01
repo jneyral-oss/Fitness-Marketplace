@@ -1,0 +1,28 @@
+[
+  {
+    "id": 45,
+    "titulo": "Plan Básico Fuerza",
+    "descripcion": "Programa de 4 semanas para ganar fuerza.",
+    "precio": 29.99,
+    "aprobado": true,
+    "url_vista_previa": "https://cdn.example.com/previews/45.mp4",
+    "coach": {
+      "id": 200,
+      "nombre": "Coach Mario",
+      "bio": "Entrenador certificado con 10 años de experiencia."
+    }
+  },
+  {
+    "id": 46,
+    "titulo": "Plan Cardiovascular",
+    "descripcion": "Mejora tu resistencia en 6 semanas.",
+    "precio": 24.99,
+    "aprobado": false,
+    "url_vista_previa": "https://cdn.example.com/previews/46.mp4",
+    "coach": {
+      "id": 201,
+      "nombre": "Coach Laura",
+      "bio": "Especialista en cardio y pérdida de grasa."
+    }
+  }
+]
