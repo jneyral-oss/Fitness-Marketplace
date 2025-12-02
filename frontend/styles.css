@@ -1,0 +1,3 @@
+body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+#plans-list { max-height: 65vh; overflow: auto; }
+.card p { margin-bottom: .5rem; }

@@ -122,4 +122,59 @@ Pasos recomendados para mover a un ambiente de pruebas (beta)
 Si quieres, puedo:
 - configurar el workflow para publicar también en Docker Hub (necesitaré que añadas los secretos),
 - crear un workflow de deploy automático a un proveedor (Render/Railway) — dime cuál prefieres y preparo la acción.
-# Fitness-Marketplace
+
+
+Frontend (React + Tailwind)
+----------------------------
+
+El proyecto incluye un frontend React con Vite y Tailwind CSS en `frontend-react/`. Características:
+- Pantalla de bienvenida (registro/login)
+- Registro de nuevos usuarios
+- Inicio de sesión
+- Onboarding personalizado (objetivo, nivel, ubicación)
+- Listado dinámico de planes desde la API
+- Registro de entrenamientos completados
+- Cierre de sesión
+
+### Instalación y ejecución
+
+1. Asegúrate de que el servidor backend está corriendo en el puerto 3000:
+
+```bash
+npm start
+```
+
+2. En otra terminal, instala dependencias del frontend React e inicia el servidor de desarrollo:
+
+```bash
+cd frontend-react
+npm install
+npm run dev
+```
+
+3. Abre `http://localhost:5173` en tu navegador (Vite por defecto usa puerto 5173).
+
+El frontend hace peticiones a la API en `http://localhost:3000/api`. Los tokens JWT se almacenan en `localStorage` y se incluyen automáticamente en las peticiones autenticadas.
+
+### Compilar para producción
+
+```bash
+cd frontend-react
+npm run build
+```
+
+La compilación genera archivos optimizados en `frontend-react/dist/`. El servidor Express (en `index.js`) sirve automáticamente la build React si existe.
+
+### Tailwind CSS
+
+El proyecto usa Tailwind CSS con PostCSS. Los estilos están en `frontend-react/src/styles.css` con las directivas `@tailwind` habilitadas. Si necesitas personalizar temas o colores, edita `frontend-react/tailwind.config.cjs`.
+
+### Usuarios de prueba
+
+Usa los siguientes usuarios para probar:
+
+- **Usuario**: `ana@email.com` / `1234`
+- **Coach**: `mario@coaches.com` / `1234`
+- **Admin**: `admin@site.com` / `1234`
+
+O registra uno nuevo desde la pantalla de bienvenida.

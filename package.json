@@ -7,7 +7,11 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "hash-passwords": "node scripts/hash_passwords.js",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "serve-frontend": "npx http-server frontend -p 8080 --silent",
+    "frontend:dev": "cd frontend-react && npm run dev",
+    "frontend:build": "cd frontend-react && npm run build",
+    "frontend:preview": "cd frontend-react && npm run preview"
   },
   "keywords": [],
   "author": "",

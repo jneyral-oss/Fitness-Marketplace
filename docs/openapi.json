@@ -48,6 +48,31 @@
         }
       }
     },
+    "/api/usuarios": {
+      "post": {
+        "summary": "Registrar un nuevo usuario",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nombre": { "type": "string" },
+                  "email": { "type": "string" },
+                  "password": { "type": "string" }
+                },
+                "required": ["nombre","email","password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Usuario creado (devuelve token y usuario)" },
+          "409": { "description": "Email ya registrado" }
+        }
+      }
+    },
     "/api/planes": {
       "get": {
         "summary": "Listar planes aprobados",

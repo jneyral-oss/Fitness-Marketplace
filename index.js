@@ -17,6 +17,19 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// Servir frontend estático si existe (facilita ver la demo desde la misma app)
+const reactDist = path.join(__dirname, 'frontend-react', 'dist');
+let frontendPath = path.join(__dirname, 'frontend');
+if (fs.existsSync(reactDist)) frontendPath = reactDist;
+if (fs.existsSync(frontendPath)) {
+  app.use(express.static(frontendPath));
+  // Si la ruta no es /api ni /docs, enviar index.html para soportar SPA/demo
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path.startsWith('/docs') || req.path === '/health') return next();
+    return res.sendFile(path.join(frontendPath, 'index.html'));
+  });
+}
+
 const dataDir = path.join(__dirname, 'data');
 const usersFile = path.join(dataDir, 'users.json');
 const plansFile = path.join(dataDir, 'plans.json');
@@ -176,6 +189,31 @@ app.post('/api/planes',
       const newId = result.lastID;
       const p = await dbGet('SELECT * FROM plans WHERE id = ?', [newId]);
       res.status(201).json({ id: p.id, titulo: p.titulo, descripcion: p.descripcion, precio: p.precio, aprobado: !!p.aprobado, url_vista_previa: p.url_vista_previa, coach: p.coach_id ? { id: p.coach_id, nombre: p.coach_nombre, bio: p.coach_bio } : null });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'error interno' });
+    }
+  }
+);
+
+// Registro de usuario
+app.post('/api/usuarios',
+  body('nombre').isString().notEmpty().withMessage('nombre requerido'),
+  body('email').isEmail().withMessage('email inválido'),
+  body('password').isString().isLength({ min: 6 }).withMessage('password requerido (min 6)'),
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+    const { nombre, email, password } = req.body || {};
+    try {
+      const existing = await dbGet('SELECT id FROM users WHERE email = ?', [email]);
+      if (existing) return res.status(409).json({ error: 'email ya registrado' });
+      const salt = bcrypt.genSaltSync(10);
+      const hashed = bcrypt.hashSync(password, salt);
+      const result = await dbRun('INSERT INTO users (nombre, email, password, role) VALUES (?,?,?,?)', [nombre, email, hashed, 'user']);
+      const newId = result.lastID;
+      const token = jwt.sign({ id: newId, email, role: 'user' }, SECRET, { expiresIn: '7d' });
+      res.status(201).json({ token, usuario: { id: newId, nombre, email, role: 'user' } });
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: 'error interno' });
