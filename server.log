@@ -3,3 +3,4 @@
 > node index.js
 
 Server running on port 3000
+curl -X POST http://localhost:3000/api/usuarios -H "Content-Type: application/json" -d '{"nombre": "Test User", "email": "test@fitmarket.com", "password": "password123"}'
