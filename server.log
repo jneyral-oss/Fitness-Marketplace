@@ -3,3 +3,4 @@
 > node index.js
 
 Server running on port 3000
+npm install mongoose dotenv
