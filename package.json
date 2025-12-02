@@ -4,7 +4,7 @@
   "description": "API demo para Fitness Marketplace (endpoints de ejemplo)",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "dev": "nodemon index.js",
     "hash-passwords": "node scripts/hash_passwords.js",
     "test": "jest --runInBand",
