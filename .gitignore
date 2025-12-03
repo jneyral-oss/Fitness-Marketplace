@@ -1,0 +1,20 @@
+# Dependencias de Node.js
+/node_modules
+/frontend-react/node_modules
+
+# Logs
+*.log
+server.log
+
+# Variables de entorno
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build de producción
+/frontend-react/dist
+
+# Cachés de herramientas
+/frontend-react/.vite
